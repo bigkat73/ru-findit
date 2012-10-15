@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'test_helper'
 require_relative  '../lib/ru_findit/tokenizer'
 
 class TokenizerTest < Test::Unit::TestCase

@@ -1,4 +1,4 @@
-require "test/unit"
+require 'test_helper'
 require_relative  '../lib/ru_findit/stopper'
 
 class StopWordTest < Test::Unit::TestCase
