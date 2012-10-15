@@ -17,7 +17,6 @@ class StopWordTest < Test::Unit::TestCase
     # Do nothing
   end
 
-  # Fake test
   def test_matching_stop_word
     assert_equal(true, @s.matches("and") )
   end
