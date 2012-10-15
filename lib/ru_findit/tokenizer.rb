@@ -1,6 +1,6 @@
 module RuFindit
 
-	class Tokenizer
+  class Tokenizer
 
 		attr_accessor :document
 		attr_reader   :tokens, :tokenizer
