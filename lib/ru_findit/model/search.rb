@@ -7,7 +7,9 @@ module RuFindit
       end
 
       module ClassMethods
-
+        def search(arg)
+          @indexer.search(arg)
+        end
       end
     end
   end

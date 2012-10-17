@@ -1,5 +1,3 @@
-require_relative 'tokenizer'
-
 module RuFindit
   class IndexCatalog
 
@@ -10,20 +8,22 @@ module RuFindit
     end
 
     def load_documents(documents)
-      if documents.class == Array
-        @documents = documents
-      end
-      @documents.each_with_index do |document, document_id|
-        if document.kind_of? ActiveRecord::Base
-          document_id = document.id
-          document_body = document.
-        else
-          document_body = document
+      @documents = documents
+      if @documents.class == Hash
+        @documents.each do |document_id, document_body|
+          t = RuFindit::Tokenizer.new(document_body)
+          t.tokenize
+          t.tokens.each do |toke|
+            @indexer.add_word(toke, document_id: document_id)
+          end
         end
-        t = RuFindit::Tokenizer.new(document_body)
-        t.tokenize
-        t.tokens.each do |toke|
-          @indexer.add_word(toke, document_id: document_id)
+      elsif @document.class == Array
+        @documents.each_with_index do |document, document_id|
+          t = RuFindit::Tokenizer.new(document)
+          t.tokenize
+          t.tokens.each do |toke|
+            @indexer.add_word(toke, document_id: document_id)
+          end
         end
       end
       @documents.size

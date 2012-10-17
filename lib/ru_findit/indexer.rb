@@ -1,5 +1,3 @@
-require_relative  'stopper'
-
 module RuFindit
 
   class Indexer
@@ -32,14 +30,20 @@ module RuFindit
     end
 
     def lookup(word)
-      index[word]
+      index.fetch word do
+        {
+          total_frequency: 0,
+          "none" => {
+            term_frequency: 0
+          }
+        }
+      end
     end
 
     def search(word)
       word_indexes = lookup(word).clone
       documents_word_freq = word_indexes.delete(:total_frequency)
       num_docs = word_indexes.keys.size
-
       idf = ( 1.0 * num_docs / documents_word_freq)
 
       scores = word_indexes.map{|k,v| {document_id: k, score: v[:term_frequency]/idf}}
