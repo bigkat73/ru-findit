@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include?(lib)
 require 'bundler/version'
 
 Gem::Specification.new do |s|
-  s.name        = "ru-findit"
+  s.name        = "ru_findit"
   s.version     = '0.0.1'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Fred Katona"]
@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
 
   s.files        = Dir.glob("{lib}/**/*") + %w(README.md)
   s.require_path = 'lib'
+  s.add_dependency 'activesupport'
+  s.add_development_dependency 'pry'
 end
