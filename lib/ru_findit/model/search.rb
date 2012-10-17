@@ -8,12 +8,6 @@ module RuFindit
 
       module ClassMethods
 
-        def search(*args)
-          query,options = args.shift
-          $indexer = $indexer || RuFindit::IndexCatalog.new(RuFindit::Indexer.new)
-
-        end
-
       end
     end
   end
