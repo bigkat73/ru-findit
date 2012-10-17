@@ -14,7 +14,13 @@ module RuFindit
         @documents = documents
       end
       @documents.each_with_index do |document, document_id|
-        t = RuFindit::Tokenizer.new(document)
+        if document.kind_of? ActiveRecord::Base
+          document_id = document.id
+          document_body = document.
+        else
+          document_body = document
+        end
+        t = RuFindit::Tokenizer.new(document_body)
         t.tokenize
         t.tokens.each do |toke|
           @indexer.add_word(toke, document_id: document_id)
