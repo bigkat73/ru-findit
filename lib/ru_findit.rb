@@ -3,7 +3,7 @@ module RuFindit
   extend ActiveSupport::Autoload
 
   autoload :Indexer
-  autoload :IndexCatalog
+  autoload :Catalog
   autoload :Tokenizer
   autoload :Stopper
 

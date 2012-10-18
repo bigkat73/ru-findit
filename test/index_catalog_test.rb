@@ -1,6 +1,6 @@
 require "test/unit"
 
-require_relative '../lib/ru_findit/index_catalog'
+require_relative '../lib/ru_findit/catalog'
 require_relative '../lib/ru_findit/indexer'
 
 class IndexCatalogTest < Test::Unit::TestCase
@@ -9,7 +9,7 @@ class IndexCatalogTest < Test::Unit::TestCase
   # to set up fixture information.
   def setup
     indexer = RuFindit::Indexer.new
-    @index_catalog = RuFindit::IndexCatalog.new(indexer)
+    @index_catalog = RuFindit::Catalog.new(indexer)
     @documents = [
       "This is a test.\n  About Snacks.\n I like cheese and crackers.  Sometimes hot chocolate.",
       "Another test.\n  About pets and cats.\n Darn cats picks on dog.  Dog fights back.  The rat also \n kills the cats.",

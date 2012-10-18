@@ -1,0 +1,14 @@
+pairs:
+  fk: Fred Katona; fkatona
+  mz: Mike Zelem; mzelem
+  sm: Sam Murphy; smurphy
+  km: Kevin McFadden; kmcfadden
+  js: Jake Stetser; jstetser
+  ms: Michael Schaedel; mschaedel
+  jw: Jason Waldrip; jwaldrip
+  dwk: Dave Kovsky; davidkovsky
+  rc: Ryan X; rcross
+  pj: Paul Jackson; pjackson
+email:
+  prefix: pair
+  domain: healthagen.net

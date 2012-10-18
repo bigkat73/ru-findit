@@ -4,6 +4,7 @@
 .idea/
 .bundle
 .config
+.pairs
 coverage
 InstalledFiles
 lib/bundler/man

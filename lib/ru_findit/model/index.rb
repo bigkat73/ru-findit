@@ -7,7 +7,7 @@ module RuFindit
       def initialize(&block)
         @indexable_fields = Set.new
         @current_index = {}
-        @indexer = RuFindit::IndexCatalog.new(RuFindit::Indexer.new)
+        @indexer = RuFindit::Catalog.new(RuFindit::Indexer.new)
         instance_eval &block if block_given?
       end
 
