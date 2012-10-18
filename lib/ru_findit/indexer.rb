@@ -47,7 +47,6 @@ module RuFindit
 
     def search(word)
       word_indexes = lookup(word).clone
-      binding.pry
       documents_word_freq = word_indexes.delete(:total_frequency)
       num_docs = word_indexes.keys.size
       idf = 1.0 * num_docs / documents_word_freq
