@@ -2,7 +2,7 @@ module RuFindit
   module Model
     class Index
 
-      attr_reader :indexable_fields, :current_index, :indexer
+      attr_reader :current_index, :indexer
 
       def initialize(&block)
         @indexable_fields = Set.new
@@ -17,8 +17,9 @@ module RuFindit
 
       def index_instance(instance)
         indexable_attributes = instance.attributes.select { |k,v| @indexable_fields.include?(k.to_sym) }
-        @current_index[instance.id] = indexable_attributes.values.join(' ')
-        @indexer.load_documents(@current_index)
+        cur_index = { instance.id => indexable_attributes.values.join(' ') }
+        @indexer.load_documents(cur_index)
+        @current_index.merge!(cur_index)
       end
 
       def search(word)

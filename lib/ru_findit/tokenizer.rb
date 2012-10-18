@@ -17,7 +17,7 @@ module RuFindit
 		end
 
 		def cleanse_tokens
-			@tokens.collect!{|token| token.gsub(/\.|\-|\+/,'')}
+			@tokens.collect!{|token| token.gsub(/\.|\-|\+|,/,'')}
 		end
 
 	end
