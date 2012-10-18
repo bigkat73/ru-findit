@@ -13,7 +13,7 @@ module RuFindit
         @documents.each do |document_id, document_body|
           add_tokens_to_index(document_id, document_body)
         end
-      elsif @document.class == Array
+      elsif @documents.class == Array
         @documents.each_with_index do |document_body, document_id|
           add_tokens_to_index(document_id, document_body)
         end

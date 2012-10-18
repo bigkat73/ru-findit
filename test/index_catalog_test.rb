@@ -1,4 +1,5 @@
 require "test/unit"
+require 'pry'
 
 require_relative '../lib/ru_findit/catalog'
 require_relative '../lib/ru_findit/indexer'
