@@ -9,8 +9,7 @@ module RuFindit
 
   module Model
     extend ActiveSupport::Autoload
-    autoload :Indexer
+    autoload :Searcher
     autoload :Index
-    autoload :Search
   end
 end

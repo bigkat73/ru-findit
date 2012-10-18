@@ -1,16 +1,9 @@
-require 'pry'
-
 module RuFindit
   module Model
-    module Indexer
+    module Searcher
 
       def self.included(base)
-
         base.extend ClassMethods
-      end
-
-      def index!
-        self.class.index.index_instance(self)
       end
 
       module ClassMethods
@@ -26,6 +19,10 @@ module RuFindit
           @index = Index.new &block
         end
 
+      end
+
+      def index!
+        self.class.index.index_instance(self)
       end
 
     end
