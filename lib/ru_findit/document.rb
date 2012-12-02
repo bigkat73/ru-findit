@@ -1,4 +1,8 @@
+require 'forwardable'
+
 class Document
+
+  extend Forwardable
 
   attr_accessor :id, :body
 
@@ -7,13 +11,10 @@ class Document
     @tokenizer = RuFindit::Tokenizer.new(body)
   end
 
-  def tokens
-    @tokenizer.tokens
-  end
+  def_delegators :@tokenizer, :tokens
 
   def word_count
     @word_count ||= @tokenizer.tokens.size
   end
-
 
 end
