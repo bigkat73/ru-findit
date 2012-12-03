@@ -20,7 +20,7 @@ describe Document do
 
   it "should persist its tokens" do
   	@doc.tokens.must_equal(["hi", "this", "is", "a", "document", "it", "should", "be", "parsed", "into", "an", "array"])
-	end
+  end
 
 	it "should contain know how many words are in its body" do
 		@doc.word_count.must_equal(12)

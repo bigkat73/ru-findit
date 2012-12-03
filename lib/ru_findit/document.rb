@@ -10,7 +10,7 @@ class Document
     @body = body
     @tokenizer = RuFindit::Tokenizer.new(body)
   end
-
+  
   def_delegators :@tokenizer, :tokens
 
   def word_count
