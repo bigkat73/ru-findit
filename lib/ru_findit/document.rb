@@ -1,16 +1,16 @@
 require 'forwardable'
 
 class Document
-
   extend Forwardable
 
-  attr_accessor :id, :body
+  attr_accessor :body, :id
 
-  def initialize(body)
+  def initialize(body, id=nil)
     @body = body
-    @tokenizer = RuFindit::Tokenizer.new(body)
+    @id = id
+    @tokenizer = RuFindit::Tokenizer.new(self)
   end
-  
+
   def_delegators :@tokenizer, :tokens
 
   def word_count

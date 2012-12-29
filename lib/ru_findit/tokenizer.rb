@@ -3,16 +3,24 @@ module RuFindit
   class Tokenizer
 
     attr_accessor :document
-    attr_reader   :tokens, :tokenizer
+    attr_reader   :tokens, :tokenator
 
     def initialize(document, options={})
       @document = document
-      @tokenizer = options[:tokenizer] || " "
+      @tokenator = options[:tokenizer] || " "
     end
 
     def tokenize
-      @tokens ||= @document.gsub(/\r\n/," ").downcase.split(@tokenizer)
+      @tokens ||= document_body.gsub(/\r\n/," ").downcase.split(@tokenator)
       cleanse_tokens
+    end
+
+    def document_body
+      if @document.respond_to?(:body)
+        @document.body
+      else
+        @document
+      end
     end
 
     def cleanse_tokens
