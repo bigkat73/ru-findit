@@ -10,7 +10,7 @@ module RuFindit
       @document_word_count = {}
       @stopper = Stopper.new
     end
-
+    
     def add_word(word, params={})
       document_id = params[:document_id] || 'none'
       unless @stopper.matches(word)
