@@ -9,15 +9,18 @@ module RuFindit
 
     def load_documents(documents)
       @documents = documents
-      if @documents.class == Hash
-        @documents.each do |document_id, document_body|
-          add_tokens_to_index(document_id, document_body)
+
+      # handle AR collection where the document has an id and a body
+      # or an array of documents using the id as the array id
+      @documents.each_with_index do |document, document_id|
+        doc = if ( document.respond_to?(:id) && document.respond_to?(:body) )
+          document
+        else
+          Document.new(document, document_id)
         end
-      elsif @documents.class == Array
-        @documents.each_with_index do |document_body, document_id|
-          add_tokens_to_index(document_id, document_body)
-        end
+        add_tokens_to_index_from(doc)
       end
+
       @documents.size
     end
 
@@ -27,11 +30,9 @@ module RuFindit
 
     private
 
-    def add_tokens_to_index(document_id, document_body)
-      t = RuFindit::Tokenizer.new(document_body)
-      t.tokenize
-      t.tokens.each do |toke|
-        @indexer.add_word(toke, document_id: document_id)
+    def add_tokens_to_index_from(document)
+      document.tokens.each do |toke|
+        @indexer.add_word(toke, document_id: document.id)
       end
     end
 
