@@ -7,6 +7,7 @@ module RuFindit
   autoload :Tokenizer
   autoload :Stopper
   autoload :Document
+  autoload :Tokenable
 
   module Model
     extend ActiveSupport::Autoload
