@@ -7,7 +7,7 @@ module RuFindit
       def initialize(&block)
         @indexable_fields = Set.new
         @current_index = {}
-        @indexer = RuFindit::Catalog.new(RuFindit::Indexer.new)
+        @catalog = RuFindit::Catalog.new(RuFindit::Indexer.new)
         instance_eval &block if block_given?
       end
 
@@ -15,15 +15,19 @@ module RuFindit
         @indexable_fields += model_fields.flatten
       end
 
+      def index_all(instances)
+        @catalog.load_documents(instances)
+      end
+
       def index_instance(instance)
         indexable_attributes = instance.attributes.select { |k,v| @indexable_fields.include?(k.to_sym) }
         cur_index = { instance.id => indexable_attributes.values.join(' ') }
-        @indexer.load_documents(cur_index)
+        @catalog.load_documents(cur_index)
         @current_index.merge!(cur_index)
       end
 
       def search(word)
-        @indexer.search(word)
+        @catalog.search(word)
       end
 
     end
