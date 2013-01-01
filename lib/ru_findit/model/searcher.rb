@@ -12,7 +12,7 @@ module RuFindit
         delegate :search, to: :index
 
         def index_all!
-          self.class.index.index_all(self.all)
+          self.index.index_all(self.all)
         end
 
         def indexable(*args, &block)
