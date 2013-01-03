@@ -45,14 +45,20 @@ module RuFindit
       end
     end
 
-    def search(word)
+    def search(word, calculator=DefaultCalculator)
       word_indexes = lookup(word).clone
       documents_word_freq = word_indexes.delete(:total_frequency)
       num_docs = word_indexes.keys.size
-      idf = 1.0 * num_docs / documents_word_freq
 
-      scores = word_indexes.map{|k,v| {document_id: k, score: ( (v[:term_frequency]/document_word_count[k]) * idf) }}
+      ## TODO Calculator.tf_idf
+      idf = 1.0 * num_docs / documents_word_freq
+      scores = word_indexes.map do |k,v| 
+        {document_id: k, score: ( (v[:term_frequency]/document_word_count[k]) * idf) }
+      end
+
       scores.sort{|a,b| b[:score] <=> a[:score]}
+      #calculator.calculate(calculation_stuff)
+
     end
 
   end
