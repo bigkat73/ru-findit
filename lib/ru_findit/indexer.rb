@@ -49,7 +49,7 @@ module RuFindit
       word_indexes = lookup(word).clone
       documents_word_freq = word_indexes.delete(:total_frequency)
       num_docs = word_indexes.keys.size
-      idf = 1.0 * num_docs / documents_word_freq
+      idf = Math.log(1.0 * num_docs / documents_word_freq)
 
       scores = word_indexes.map{|k,v| {document_id: k, score: ( (v[:term_frequency]/document_word_count[k]) * idf) }}
       scores.sort{|a,b| b[:score] <=> a[:score]}
