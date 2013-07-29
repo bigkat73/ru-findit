@@ -17,11 +17,7 @@ module RuFindit
     end
 
     def document_body
-      if self.respond_to?(:body)
-        self.body
-      else
-        self
-      end
+      self.respond_to?(:body) ? self.body : self
     end
 
     def cleanse_tokens
