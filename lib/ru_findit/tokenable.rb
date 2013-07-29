@@ -2,8 +2,8 @@ module RuFindit
 	module Tokenable
 
 	  module ClassMethods
-			attr_accessor :document
-	  	attr_reader   :tokens, :tokenator
+            attr_accessor :document
+            attr_reader   :tokens, :tokenator
 	  end
 
 	  def self.included(base)
