@@ -2,8 +2,7 @@ module RuFindit
 
   class Tokenizer
 
-    attr_accessor :document
-    attr_reader   :tokens, :tokenator
+    attr_reader   :document, :tokens, :tokenator
 
     def initialize(document, options={})
       @document = document
@@ -15,8 +14,12 @@ module RuFindit
       cleanse_tokens
     end
 
+    def document
+      document ||= document
+    end
+
     def document_body
-      if @document.respond_to?(:body)
+      @document.respond_to?(:body) ? @document.body : document
         @document.body
       else
         @document
